@@ -1,4 +1,4 @@
-
+var settings = require('./settings');
 var clientId = settings.clientId;
 var clientSecret = 'gQ94keJu4tJhYqgBu5KnVqX';
 var redirectUri = 'http://localhost:3000/authorize';

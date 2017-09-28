@@ -10,7 +10,6 @@ var outlook = require('node-outlook');
 
 // Very basic HTML templates
 var pages = require('./pages');
-var settings = require('./settings');
 var authHelper = require('./authHelper');
 
 // Configure express
