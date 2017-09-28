@@ -7,6 +7,7 @@ var session = require('express-session');
 var moment = require('moment');
 var querystring = require('querystring');
 var outlook = require('node-outlook');
+var hbs = require('express-handlebars');
 
 // Very basic HTML templates
 var pages = require('./pages');
@@ -15,8 +16,10 @@ var authHelper = require('./authHelper');
 // Configure express
 // Set up rendering of static files
 app.use(express.static('static'));
+
 // Need JSON body parser for most API responses
 app.use(bodyParser.json());
+
 // Set up cookies and sessions to save tokens
 app.use(cookieParser());
 app.use(session(
@@ -24,7 +27,10 @@ app.use(session(
     resave: false,
     saveUninitialized: false 
   }));
-  
+
+app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
+app.set('view engine', 'hbs');
+
 // Home page
 app.get('/', function(req, res) {
   res.send(pages.loginPage(authHelper.getAuthUrl()));
